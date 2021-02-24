@@ -1,0 +1,17 @@
+.PlanesContainer {
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.TableContainer {
+    margin-top: 5%;
+    width: 100%;
+}
+
+.Boton-agregar {
+    float: right;
+    width: 30%;
+}

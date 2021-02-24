@@ -7,13 +7,8 @@ import useFormValidation from '../hooks/useFormValidation'
 
 function Login({ history }) {
     const [credentials, setCredentials] = useState({ User: '', Password: '' })
-    const [allowed, setAllowed] = useState(false)
     const [errors, validateFields] = useFormValidation(credentials)
     const [loginError, setLoginError] = useState('')
-    const validations = {
-        User: { min: 4, max: 25, notNull: true },
-        Password: { min: 6, max: 15, notNull: true },
-    }
     const { auth } = useContext(AppContext)
 
     const handleOnChange = (e) => {
@@ -24,7 +19,15 @@ function Login({ history }) {
     }
 
     const login = async () => {
-        if (!errors.User && !errors.Password && allowed) {
+        setLoginError('')
+
+        const validations = {}
+        validations.User = { required: true, min: 4, max: 25, string:true }
+        validations.Password = { required: true, min: 6, max: 15 , string:true}
+
+        const formErrors = validateFields(validations)
+        if (!formErrors) {
+            
             try {
                 let response = await axios.post(
                     'http://localhost:3000/auth/login',
@@ -53,11 +56,9 @@ function Login({ history }) {
                 user={credentials}
                 handleSubmit={handleSubmit}
                 onChange={handleOnChange}
-                validateFields={validateFields}
                 errors={errors}
-                setAllowed={setAllowed}
-                validations={validations}
                 submitError={loginError}
+                setSubmitError={setLoginError}
             />
         </div>
     )

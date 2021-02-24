@@ -1,9 +1,9 @@
 import React from 'react'
 
-function NotFound() {
+function NotFound({ mensaje = 'Not Found' }) {
     return (
         <div>
-           <h1>Not found</h1> 
+            <h1>{mensaje}</h1>
         </div>
     )
 }

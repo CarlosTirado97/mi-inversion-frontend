@@ -1,22 +1,9 @@
 import '../assets/styles/components/UserForm.css'
 import React, { useState } from 'react'
 
-function UserForm({
-    user,
-    onChange,
-    handleSubmit,
-    validateFields,
-    errors,
-    setAllowed,
-    validations,
-    submitError,
-}) {
+function UserForm({ user, onChange, handleSubmit, errors, submitError }) {
     const handlerOnClick = () => {
-        const formErrors = validateFields(validations)
-        if (!formErrors.User && !formErrors.Password) {
-            setAllowed(true)
-            handleSubmit()
-        }
+        handleSubmit()
     }
 
     return (
@@ -34,7 +21,7 @@ function UserForm({
                             value={user.User}
                             onChange={onChange}
                         />
-                        {errors.User && (
+                        {errors && errors.User && (
                             <p className="errorValidation">{errors.User}</p>
                         )}
                     </div>
@@ -47,7 +34,7 @@ function UserForm({
                             value={user.Password}
                             onChange={onChange}
                         />
-                        {errors.Password && (
+                        {errors && errors.Password && (
                             <p className="errorValidation">{errors.Password}</p>
                         )}
                     </div>
