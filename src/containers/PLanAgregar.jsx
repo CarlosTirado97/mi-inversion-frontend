@@ -18,6 +18,7 @@ function PlanModificar({ history }) {
     const [addError, setAddError] = useState('')
 
     async function addPlan(p) {
+        console.log(p)
         const token = localStorage.getItem('token')
         console.log(token)
         setAddError('')
@@ -28,7 +29,7 @@ function PlanModificar({ history }) {
         validations.InversionMaxima = {
             number: true,
             required: true,
-            min: plan.InversionMinima
+            min: p.InversionMinima
         }
         validations.TasaMensual = {
             number: true,

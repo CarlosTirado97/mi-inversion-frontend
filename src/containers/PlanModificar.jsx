@@ -44,6 +44,7 @@ function PlanModificar({ match, history }) {
     }
 
     async function updatePlan(p) {
+        console.log(p)
         const token = localStorage.getItem('token')
         setUpdateError('')
         const validations = {}
